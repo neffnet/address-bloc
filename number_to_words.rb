@@ -23,7 +23,9 @@ end
 
 def parse_block(num)
   hundreds = num.to_s[-3].to_i
-  tens = (num.to_s[-2] + '0').to_i
+  if num.to_s[-2]
+    tens = (num.to_s[-2] + '0').to_i
+  else tens = 0 end
   ones = num.to_s[-1].to_i
   last_two = num.to_s[-2..-1].to_i
   words = ''
