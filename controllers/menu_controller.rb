@@ -13,7 +13,8 @@ class MenuController
     puts "2 - Create a new entry"
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
-    puts "5 - Exit"
+    puts "5 - View entry number n"
+    puts "6 - Exit"
     puts ""
     print "Enter your selection: "
 
@@ -37,6 +38,9 @@ class MenuController
       read_csv
       main_menu
     when 5
+      system "clear"
+      show_entry_n
+    when 6
       puts "goodbye"
       exit(0)
     else
@@ -82,6 +86,25 @@ class MenuController
   end
 
   def read_csv
+
+  end
+
+  def show_entry_n
+    max = @address_book.entries.length - 1
+    puts "Please enter an index: "
+    puts "(valid indices are 0 to #{max})"
+    n = gets.chomp.to_i
+
+    while ( n < 0 || n > max )
+      puts "Please enter a valid index: "
+      n = gets.chomp.to_i
+    end
+
+    entry = @address_book.entries[n]
+    
+    system "clear"
+    puts entry.to_s
+    entry_submenu(entry)
 
   end
 
