@@ -199,13 +199,20 @@ class MenuController
   def nuke_all
     puts "This will DELETE ALL THE ENTRIES! Enter y to confirm or n to go back: "
     
-    if gets.chomp == "y" || "yes" || "Y"
+    if gets.chomp.upcase == "Y"
       system "clear"
-      @address_book.entries.each do |entry|
+
+      i = @address_book.entries.length - 1
+      while i >= 0
+        entry = @address_book.entries[i]
         delete_entry(entry)
+        i -= 1
       end
 
       puts "\nAll entries have been deleted."
+      main_menu
+    else
+      system "clear"
       main_menu
     end
 
